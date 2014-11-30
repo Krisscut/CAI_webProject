@@ -71,8 +71,8 @@ Please edit the details below.
  */
 def configurePom(def pom) {
   pom.project {
-    name CAI_webCommercial
-    description 'Website created for CAI's module'
+    name rootProject.name
+    description 'Website created for CAI module'
     inceptionYear '2014'
     packaging 'jar'
 
