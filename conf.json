@@ -1,5 +1,14 @@
-// Example JSON config file
-
 {
-  "foo": "bar"
+    "foo": "bar",
+
+    "mongo" :
+    {
+        "useAuth" : true,
+        "host": "localhost",
+        "port":27017,
+        "username" : "default",
+        "password" : "default",
+        "dbname": "CAI_webProject",
+        "staticImgs": "./src/main/resources/web/beers/img"
+    }
 }

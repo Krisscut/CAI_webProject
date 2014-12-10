@@ -1,7 +1,8 @@
 {
-
+    "main":"groovy:com.enib.cai.web.verticle.EntryPointVerticle",
   // Java verticle
-  "main":"com.mycompany.myproject.PingVerticle",
+  //"main":"com.mycompany.myproject.PingVerticle",
+
 
   // In this example we also provide various other versions of the main verticle, you can uncomment this and
   // play around:
@@ -36,6 +37,6 @@
   "keywords": ["gerbils", "cars", "cheese", "chocolate", "underpants", "herring"],
   "homepage": "https://github.com/Krisscut/CAI_webProject",
 
+  // autoredeploy on change
   "auto-redeploy": true
-
 }
