@@ -17,6 +17,9 @@ class WormsWorkerVerticle extends AbstractGuiceVerticle
     @Inject
     private Worms worms
 
+    private String usage = "worms/getAll - Get all informations about the worms into the database \n\n" +
+                            "worms/get;ID - Replace ID with the identifier of the worm you want to know about"
+
     @Override
     public start() {
         super.start()
@@ -26,14 +29,29 @@ class WormsWorkerVerticle extends AbstractGuiceVerticle
 
         eb.registerHandler("worms.service") { message ->
             String response = ""
+
+            /* Split given URL to take parameters*/
+            String[] cmd = message.body.split(";");
+
             println "Message reçu : " + message.body
 
             try {
-                switch (message.body) {
+                switch (cmd[0])
+                {
                     case "getAll":
                         response = worms.getWorms().encodePrettily()
                         break
 
+                    case "get":
+                        if (cmd.length == 2)
+                        {
+                            response = worms.getWorm(cmd[1]).encodePrettily()
+                        }
+                        else
+                        {
+                            response = usage
+                        }
+                        break
                 //other worms
                     default:
                         response = "NO CASE";

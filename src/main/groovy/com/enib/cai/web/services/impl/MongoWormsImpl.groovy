@@ -59,13 +59,14 @@ class MongoWormsImpl implements Worms {
         JsonObject wormJson = new JsonObject();
         DBCursor cursor = null;
         try {
-            // GET ALL BEERS
+            // GET ALL Worms
             DBCollection wormsCollection = db.getCollection("worms")
 
             DBObject query = new BasicDBObject("_id", id)
             cursor = wormsCollection.find(query)
 
-            switch (cursor.size()) {
+            switch (cursor.size())
+            {
                 case 0:
                     throw new Exception("Unknown id")
                 case 1:
@@ -85,16 +86,13 @@ class MongoWormsImpl implements Worms {
                 cursor.close();
             }
         }
-        return beer;
-
-
-
+        return wormJson;
     }
 
     public JsonObject addWorm(Worm worm) throws Exception
     {
         try {
-            DBCollection beersCollection = db.getCollection("beers");
+            DBCollection beersCollection = db.getCollection("worms");
 
             DBObject dbWorm = worm.getDBObject()
 

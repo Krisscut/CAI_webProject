@@ -81,26 +81,17 @@ class WebMainVerticle extends Verticle
 
         def rm = new RouteMatcher()
 
+
+
         // Extract the params from the uri
 
         // API Route Matcher send to the event bus
 
-        rm.get("/api/worms/:id") { req ->
-            String id = req.params.get("id")
-            println "Received command through URI " + id
-
-            String message = "default"
-            if ( id == "all")
-            {
-                message = "getAll"
-            }
-            else
-            {
-                //make regex here !
-            }
+        rm.get("/api/worms/:cmd") { req ->
+            String cmd = req.params.get("cmd")
 
             // send the message throw the eventbus
-            eb.send("worms.service", message) { response ->
+            eb.send("worms.service", cmd) { response ->
                 // get the response from the eventbus and send it as response
                 println("I received a reply before the timeout of 5 seconds");
                 req.response.end(response.body)
@@ -115,6 +106,7 @@ class WebMainVerticle extends Verticle
             if ( id == "all")
             {
                 message = "getAll"
+
             }
             else
             {
