@@ -86,6 +86,12 @@ def configurePom(def pom) {
         name 'Krisscut'
         email 'krisscut@hotmail.fr'
       }
+
+        developer {
+            id 'LastCall'
+            name 'Lastcall310'
+            email 'unknow@tofill.fr'
+        }
     }
 
     scm {
