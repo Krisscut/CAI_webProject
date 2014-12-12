@@ -34,7 +34,7 @@
 
   // Optional fields
   "developers": ["Krisscut", "Other Dev 2"],
-  "keywords": ["gerbils", "cars", "cheese", "chocolate", "underpants", "herring"],
+  "keywords": ["CAI", "WEB", "cheese", "chocolate", "underpants", "herring"],
   "homepage": "https://github.com/Krisscut/CAI_webProject",
 
   // autoredeploy on change

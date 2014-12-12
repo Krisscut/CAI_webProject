@@ -67,6 +67,18 @@ test {
 
 }
 
+/* -----Embedded Mongo part --- --*/
+buildscript {
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath 'com.sourcemuse.gradle.plugin:gradle-mongo-plugin:0.4.0'
+   }
+}
+apply plugin: 'mongo'
+/* ------------------------------ */
+
 /*
 If you're uploading stuff to Maven, Gradle needs to generate a POM.
 Please edit the details below.
@@ -111,3 +123,5 @@ def configurePom(def pom) {
     }
   }
 }
+
+
