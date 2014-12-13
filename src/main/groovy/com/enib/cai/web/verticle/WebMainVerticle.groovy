@@ -35,6 +35,28 @@ class WebMainVerticle extends Verticle
             }
         }
 
+        rm.get("/api/equipments/:cmd") { req ->
+            String cmd = req.params.get("cmd")
+
+            // send the message throw the eventbus
+            eb.send("equipments.service", cmd) { response ->
+                // get the response from the eventbus and send it as response
+                println("I received a reply before the timeout of 5 seconds");
+                req.response.end(response.body)
+            }
+        }
+
+        rm.get("/api/bonuses/:cmd") { req ->
+            String cmd = req.params.get("cmd")
+
+            // send the message throw the eventbus
+            eb.send("bonuses.service", cmd) { response ->
+                // get the response from the eventbus and send it as response
+                println("I received a reply before the timeout of 5 seconds");
+                req.response.end(response.body)
+            }
+        }
+
         rm.get("/api/mongo/:id") { req ->
             String id = req.params.get("id")
             println "Received command through URI " + id

@@ -17,16 +17,12 @@ public class EntryPointVerticle extends Verticle {
         println "config=" + config.toString()
 
         //deploy worker verticles
-        //container.deployWorkerVerticle("groovy:com.enib.cai.vertx.verticle.BeersWorkerVerticle", container.config, 4)
-        //container.deployWorkerVerticle("groovy:com.enib.cai.vertx.verticle.ImagesWorkerVerticle", container.config, 4)
+        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.MongoVerticle", container.config,4)
+        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.WormsWorkerVerticle", container.config,4)
+        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.BonusesWorkerVerticle", container.config, 4)
+        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.EquipmentWorkerVerticle", container.config, 4)
 
-        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.MongoVerticle", container.config)
-        container.deployWorkerVerticle("groovy:com.enib.cai.web.verticle.WormsWorkerVerticle", container.config)
-
-        //container.deployVerticle("groovy:com.enib.cai.web.database.test", container.config)
-
-        // deploy Enibar Verticle programaticaly
+        // deploy Website Verticle programaticaly
         container.deployVerticle("groovy:com.enib.cai.web.verticle.WebMainVerticle", container.config);
     }
-
 }

@@ -1,8 +1,7 @@
 package com.enib.cai.web.services.impl
 
-import com.enib.cai.web.model.Worm
-import com.enib.cai.web.services.Articles
-import com.enib.cai.web.services.Worms
+import com.enib.cai.web.model.Equipment
+import com.enib.cai.web.services.Equipments
 import com.mongodb.BasicDBObject
 import com.mongodb.DB
 import com.mongodb.DBCollection
@@ -14,34 +13,35 @@ import org.vertx.java.core.json.JsonObject
 import javax.inject.Inject
 
 /**
- * Created by Simon on 10/12/2014.
+ * Created by Simon on 13/12/2014.
  */
-class MongoWormsImpl implements Worms {
+class MongoEquipmentsImpl implements Equipments
+{
     // MongoDB driver
     @Inject
     private DB db;
 
-    public MongoWormsImpl() {
+    public MongoEquipmentsImpl() {
 
     }
 
-    public JsonArray getWorms() {
-        JsonArray jsonWorms = new JsonArray();
+    public JsonArray getEquipments() {
+        JsonArray jsonEquipments = new JsonArray();
         DBCursor cursor = null;
         try {
             // GET ALL Worms
-            DBCollection wormsCollection = db.getCollection("worms");
+            DBCollection equipmentsCollection = db.getCollection("equipments");
 
-            cursor = wormsCollection.find();
+            cursor = equipmentsCollection.find();
 
             while (cursor.hasNext())
             {
                 DBObject object = cursor.next();
 
-                Worm worm = new Worm(object)
-                JsonObject wormJson = worm.getJsonObject();
+                Equipment equipment = new Equipment(object)
+                JsonObject equipmentJson = equipment.getJsonObject();
 
-                jsonWorms.addObject(wormJson);
+                jsonEquipments.addObject(equipmentJson);
             }
         } catch (Exception e) {
             throw e;
@@ -50,11 +50,11 @@ class MongoWormsImpl implements Worms {
                 cursor.close();
             }
         }
-        return jsonWorms;
+        return jsonEquipments;
     }
 
 
-    public JsonObject getWorm(String id) throws Exception
+    public JsonObject getEquipment(String id) throws Exception
     {
         JsonObject wormJson = new JsonObject();
         DBCursor cursor = null;
@@ -73,7 +73,7 @@ class MongoWormsImpl implements Worms {
                     //wrap the response
                     DBObject dbObject = cursor.next()
 
-                    Worm worm = new Worm(dbObject)
+                    Equipment worm = new Equipment(dbObject)
                     wormJson = worm.getJsonObject()
                     break;
                 default:
@@ -89,7 +89,17 @@ class MongoWormsImpl implements Worms {
         return wormJson;
     }
 
-    public JsonObject addWorm(Worm worm) throws Exception
+    @Override
+    JsonArray getEquipment() {
+        return null
+    }
+
+    @Override
+    JsonObject getEquipments(String id) throws Exception {
+        return null
+    }
+
+    public JsonObject addEquipment(Equipment worm) throws Exception
     {
         try {
             DBCollection wormsCollection = db.getCollection("worms");
@@ -98,11 +108,14 @@ class MongoWormsImpl implements Worms {
 
             wormsCollection.insert(dbWorm).getLastError().throwOnError();
 
-            return this.getWorm(worm.id);
+            return this.getEquipment(worm.id);
         } catch(com.mongodb.MongoException.DuplicateKey exp) {
             throw new Exception("already exists");
         } catch (Exception e) {
             throw e;
         }
     }
+
+
+
 }
