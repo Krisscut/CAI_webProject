@@ -5,6 +5,7 @@ import com.enib.cai.web.model.Bonus
 import com.enib.cai.web.model.Equipment
 import com.enib.cai.web.model.Worm
 import com.enib.cai.web.services.Articles
+
 import com.mongodb.BasicDBObject
 import com.mongodb.DB
 import com.mongodb.DBCollection
@@ -112,10 +113,8 @@ class MongoArticlesImpl implements Articles
             while (cursor.hasNext())
             {
                 DBObject object = cursor.next();
-
                 Article article = createArticle(typeArticles, object)
                 JsonObject articleJson =  article.getJsonObject()
-
                 jsonArticles.addObject(articleJson);
             }
         } catch (Exception e) {

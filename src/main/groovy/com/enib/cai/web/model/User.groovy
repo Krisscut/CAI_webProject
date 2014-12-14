@@ -8,7 +8,7 @@ class User
     int id;
     String username;
     String password;
-
-
-
+    String email;
+    Date inscriptionDate;
+    Date lastConnexionDate;
 }

@@ -7,8 +7,7 @@ import java.sql.Time
  */
 class Api
 {
-    int id
     String nameApi;
     Date dateSubscription;
-    Date dateExpiration;
+
 }

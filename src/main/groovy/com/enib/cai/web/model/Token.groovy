@@ -5,9 +5,6 @@ package com.enib.cai.web.model
  */
 class Token
 {
-    int id;
-
-
-
-
+    Api[]  authorisedAPI;
+    Date   dateValidation;
 }

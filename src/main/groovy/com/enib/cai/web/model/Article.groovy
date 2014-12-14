@@ -2,7 +2,11 @@ package com.enib.cai.web.model
 
 import com.mongodb.BasicDBObject
 import com.mongodb.DBObject
+import com.mongodb.util.JSON
+import com.mongodb.util.JSONSerializers
 import org.vertx.java.core.json.JsonObject
+
+import java.nio.charset.Charset
 
 /**
  * Created by Simon on 09/12/2014.
@@ -23,11 +27,9 @@ abstract class Article
 
     public Article(DBObject object )
     {
-        println "Creating new article"
-
         this.id = object.get("_id")
         this.name = object.get("name")
-        this.description = object.get("description")
+        this.description =  object.get("description")
         this.img = object.get("img")
         this.availability = object.get("availability")
         this.cost = object.get("cost")
@@ -80,7 +82,6 @@ abstract class Article
         dbObject.put("img",(String) this.img)
         dbObject.put("availability",(Number) this.availability)
         dbObject.put("cost", (Number) this.cost)
-
 
         return dbObject
     }

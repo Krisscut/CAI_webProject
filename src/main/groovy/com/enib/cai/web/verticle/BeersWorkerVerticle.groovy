@@ -13,7 +13,7 @@ public class BeersWorkerVerticle extends AbstractGuiceVerticle {
   @Override
   public start() {
     super.start()
-    println "deploy enibar worker verticle"
+    println "deploy beers worker verticle :)"
 
     EventBus eb = vertx.eventBus
 

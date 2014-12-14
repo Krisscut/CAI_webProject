@@ -3,23 +3,16 @@ package com.enib.cai.web.guice.provider
 import com.enib.cai.web.model.Ability
 import com.enib.cai.web.model.Bonus
 import com.enib.cai.web.model.Equipment
-import com.enib.cai.web.model.Worm;
+import com.enib.cai.web.model.Worm
+
 import com.google.inject.Inject;
 import com.google.inject.Provider
-import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSInputFile;
-import com.mongodb.util.JSON;
-import org.vertx.java.core.json.JsonObject;
+import com.mongodb.DBObject
+import com.mongodb.MongoClient
+import com.mongodb.util.JSON
 
-import javax.inject.Named;
-import java.io.File;
-import java.io.IOException;
-import java.net.UnknownHostException;
+import javax.inject.Named
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MongoProvider implements Provider<DB> {
@@ -37,10 +30,8 @@ public class MongoProvider implements Provider<DB> {
     if (!mongoInitialized.getAndSet(true)) {
       try {
         mongo = new MongoClient((String)config["host"], (Integer)config["port"]);
-
         String path = config["staticImgs"];
         staticInit(path);
-        mongoInitialized.set(true)
 
       } catch (UnknownHostException e) {
         e.printStackTrace();
@@ -56,6 +47,20 @@ public class MongoProvider implements Provider<DB> {
     println "Static initialisation of the database"
     // init the worms
     DB db = mongo.getDB(config["dbname"]);
+
+      DBObject bson = ( DBObject ) JSON.parse("{\n" +
+              "  \"alcohol\": 6.8,\n" +
+              "  \"availability\": \"Year round\",\n" +
+              "  \"brewery\": \"Brasserie Affligem (Heineken)\",\n" +
+              "  \"description\": \"Affligem Blonde, the classic cééééééaaaaàààààlear blonde abbey ale, with a gentle roundness and 6.8% alcohol. Low on bitterness, it is eminently drinkable.\",\n" +
+              "  \"_id\": \"AffligemBlond\",\n" +
+              "  \"img\": \"img/AffligemBlond.jpg\",\n" +
+              "  \"label\": \"img/AffligemBlond-label.png\",\n" +
+              "  \"name\": \"Affligem Blond\",\n" +
+              "  \"serving\": \"Serve in a Snifter\",\n" +
+              "  \"style\": \"Belgian-Style Blonde Ale\"\n" +
+              "}");
+      db.getCollection("beers").save(bson);
 
     println "Preparing abilities"
       //Force vitality speed resistance mind
@@ -76,8 +81,9 @@ public class MongoProvider implements Provider<DB> {
     Worm wormWeak = new Worm('1',"Worm Faible", "L'un des worm les plus faibles que vous pourrez trouver sur le jeu", "img/wormWeak.jpg", 100, 1000, weakAbility)
     db.getCollection("worms").save(wormWeak.getDBObject());
 
-    Bonus   speedBonus = new Bonus('0', "Bonus rapidité", "Founi un bonus de rapidité pour votre worm !", "img/bonusQuick.jpg", 100, 100, quickAbility)
+    Bonus   speedBonus = new Bonus('0', "Bonus rapidité", "Founis un bonus de rapidité pour votre worm !", "img/bonusQuick.jpg", 100, 100, quickAbility)
     db.getCollection("bonus").save(speedBonus.getDBObject());
+    DBObject object = speedBonus.getDBObject()
     Bonus   slowBonus = new Bonus('1', "Slow Malus", "Founis un malus de rapidité pour votre worm !", "img/bonusSlow.jpg", 100, 100, slowAbility)
     db.getCollection("bonus").save(slowBonus.getDBObject());
 
