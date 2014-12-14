@@ -1,10 +1,10 @@
 @import url('bootstrap.min.css');
 body{
-background: url('image/4.jpg');
+background: url('/image/4.jpg');
 }
 
 .jumbotron{
-background: url('image/6.jpg');
+background: url('/image/6.jpg');
 }
 
 UL.progress {

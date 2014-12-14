@@ -2,6 +2,7 @@ package com.enib.cai.web.verticle
 
 import com.enib.cai.web.services.Equipments
 import com.enib.cai.web.services.Users
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.vertx.groovy.core.eventbus.EventBus
 import org.vertx.java.core.json.JsonObject
 
@@ -15,7 +16,7 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
     @Inject
     private Users users
 
-    private String[] cmdAvailable = ["createAccount", "authentificateConnexion"]
+    private String[] cmdAvailable = ["createAccount", "login", "logout", "authorize"]
     private String usage = "worms/getAll - Get all informations about the worms into the database \n\n" +
             "worms/get;ID - Replace ID with the identifier of the worm you want to know about"
 
@@ -28,40 +29,57 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
         EventBus eb = vertx.eventBus
 
         eb.registerHandler("users.service") { message ->
-            String response = ""
+            JsonObject response = new JsonObject()
 
             /* Split given URL to take parameters*/
             println "Message reçu : " + message.body
 
+            HashMap<String,Object> result = new ObjectMapper().readValue(message.body, HashMap.class);
             JsonObject object = new JsonObject(message.body);
 
-            String cmd = object.getString("cmd")
-            JsonObject headers = object.getObject("headers")
+            String cmd = result["cmd"]
+            HashMap<String,Object> headers = result["headers"]
 
-
-            println headers.hasProperty("username")
-            println headers.hasProperty("password")
             if (cmd in cmdAvailable)
             {
                 switch (cmd)
                 {
                     case "createAccount":
-                        if (headers.hasProperty("username") && headers.hasProperty("password") )
+                        if (headers.containsKey("username") && headers.containsKey("password") )
                         {
-                            response = "yeah, now we can work !"
+                            response.putString("status", "ok")
+                            response.putString("result", "now we can work")
                         }
                         else
                         {
-                            response = "not all parameters have been given"
+                            response.putString("status", "error")
+                            response.putString("result", "Not all parameters have been given")
                         }
                         break;
+                    case "login":
+                        response.putString("status", "ok")
+                        response.putString("result", "login")
+                        break
+
+                    case "logout":
+                        response.putString("status", "ok")
+                        response.putString("result", "logout")
+                        break
+
+                    case "authorize":
+                        response.putString("status", "ok")
+                        response.putString("result", "authorize")
+                        break
+
                     default:
-                        response = "WTF !"
+                        response.putString("status", "error")
+                        response.putString("result", "WTF")
                 }
             }
             else
             {
-                response = "Unknow cmd"
+                response.putString("status", "error")
+                response.putString("result", "Unknow Command")
             }
 
 
@@ -92,9 +110,9 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
                 exp.printStackTrace();
             }
             */
-            println response
+
             // Now reply to it
-            message.reply(response)
+            message.reply(response.encodePrettily())
         }
     }
 

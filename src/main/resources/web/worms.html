@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" ng-app="WormBuyer">
 <head>
 <meta charset="UTF-8">
 <title>Worms </title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-theme.min.css">
+    <!-- for CSS Transitions and/or Keyframe Animations -->
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery is used for JavaScript animations (include this before angular.js) -->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/angular-resource.js"></script>
+    <!-- required module to enable animation support in AngularJS -->
+    <script src="lib/angular-animate.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/services.js"></script>
+    <!-- for JavaScript Animations -->
+    <script src="js/animations.js"></script>
 
-
-<style type="text/css">
-    body{
-    	padding-top: 70px;
-    }
-</style>
+    <style type="text/css">
+        body{
+            padding-top: 70px;
+        }
+    </style>
 </head>
 <body >
 
@@ -93,16 +105,16 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-4 small">
-			<h3>Worm de base </h2>
+			<h3>Worm de base </h3>
 			<p>Choisiser votre worm parmis les nombreux vers en quête de sang</p><br>
 			
 			<div class="bs-example">
-    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+    <div id="myCarousel1" class="carousel slide" data-interval="3000" data-ride="carousel1">
     	<!-- Carousel indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel1" data-slide-to="1"></li>
+            <li data-target="#myCarousel1" data-slide-to="2"></li>
         </ol>   
        <!-- Carousel items -->
         <div class="carousel-inner">
@@ -129,7 +141,7 @@
             </div>
         </div>
         <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+        <a class="carousel-control left" href="#myCarousel1" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
         <a class="carousel-control right" href="#myCarousel" data-slide="next">
@@ -140,16 +152,16 @@
 </div>
 		</div>
 		<div class="col-xs-4 small">
-			<h3>Armes</h2>
+			<h3>Armes</h3>
 			<p>Equiper le d'armes plus puissants les une que les autres sssssssssss</p><br>
 			
 			<div class="bs-example">
-    <div id="myCarouse2" class="carousel slide" data-interval="3000" data-ride="carouse2">
+    <div id="myCarousel2" class="carousel slide" data-interval="3000" data-ride="carousel2">
     	<!-- Carousel indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarouse2" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarouse2" data-slide-to="1"></li>
-            <li data-target="#myCarouse2" data-slide-to="2"></li>
+            <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel2" data-slide-to="1"></li>
+            <li data-target="#myCarousel2" data-slide-to="2"></li>
         </ol>   
        <!-- Carousel items -->
         <div class="carousel-inner">
@@ -176,10 +188,10 @@
             </div>
         </div>
         <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarouse2" data-slide="prev">
+        <a class="carousel-control left" href="#myCarousel2" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="carousel-control right" href="#myCarouse2" data-slide="next">
+        <a class="carousel-control right" href="#myCarousel2" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
@@ -187,16 +199,16 @@
 </div>
 		</div>
 		<div class="col-xs-4 small">
-			<h3>Bonus</h2>
+			<h3>Bonus</h3>
 			<p>Ajouter lui des bonus à défriser un moutons sssssssdddddddssss</p><br>
 			
 			<div class="bs-example">
-    <div id="myCarouse3" class="carousel slide" data-interval="3000" data-ride="carouse3">
+    <div id="myCarousel3" class="carousel slide" data-interval="3000" data-ride="carousel3">
     	<!-- Carousel indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarouse3" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarouse3" data-slide-to="1"></li>
-            <li data-target="#myCarouse3" data-slide-to="2"></li>
+            <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel3" data-slide-to="1"></li>
+            <li data-target="#myCarousel3" data-slide-to="2"></li>
         </ol>   
        <!-- Carousel items -->
         <div class="carousel-inner">
@@ -223,10 +235,10 @@
             </div>
         </div>
         <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarouse3" data-slide="prev">
+        <a class="carousel-control left" href="#myCarousel3" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="carousel-control right" href="#myCarouse3" data-slide="next">
+        <a class="carousel-control right" href="#myCarousel3" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
