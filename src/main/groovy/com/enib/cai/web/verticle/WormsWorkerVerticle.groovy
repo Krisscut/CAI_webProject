@@ -4,7 +4,8 @@ import com.enib.cai.web.services.Worms
 import org.vertx.groovy.core.eventbus.EventBus
 
 import com.enib.cai.web.services.Beers
-import org.vertx.groovy.core.eventbus.EventBus;
+import org.vertx.groovy.core.eventbus.EventBus
+import org.vertx.java.core.json.JsonObject;
 
 import javax.inject.Inject;
 
@@ -28,7 +29,7 @@ class WormsWorkerVerticle extends AbstractGuiceVerticle
         EventBus eb = vertx.eventBus
 
         eb.registerHandler("worms.service") { message ->
-            String response = ""
+            JsonObject response = new JsonObject()
 
             /* Split given URL to take parameters*/
             String[] cmd = message.body.split(";");
@@ -39,30 +40,37 @@ class WormsWorkerVerticle extends AbstractGuiceVerticle
                 switch (cmd[0])
                 {
                     case "getAll":
-                        response = worms.getWorms().encodePrettily()
+                        response.putString("status", "ok")
+                        response.putArray("result", worms.getWorms())
                         break
 
                     case "get":
                         if (cmd.length == 2)
                         {
-                            response = worms.getWorm(cmd[1]).encodePrettily()
+                            response.putString("status", "ok")
+                            response.putObject("result",  worms.getWorm(cmd[1]))
                         }
                         else
                         {
-                            response = usage
+                            response.putString("status", "error")
+                            response.putString("result", usage)
                         }
                         break
-                //other worms
+                    //other worms
                     default:
-                        response = "NO CASE";
+                        response.putString("status", "Unknow Command")
+                        response.putString("result", usage)
                 }
-            } catch (Exception exp) {
-                response = "Huston we have a problem"
+            }
+            catch (Exception exp)
+            {
+                response.putString("status", "error")
+                response.putString("result", "Exception catched !")
                 exp.printStackTrace();
             }
 
             // Now reply to it
-            message.reply(response)
+            message.reply(response.encodePrettily())
         }
     }
 }
