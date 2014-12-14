@@ -2,6 +2,12 @@
 
 *Détails des API*
 
+Les réponses de toutes ces API sont formattées en JSON.
+La structure peut varier selon les API, mais un socle commun est utilisé.
+
+- La clé **status** permet de connaître l'état de la requete ( OK si tout va bien, autre chose sinon ... )
+- La clé **result** contient le détail du problème si un problème est survenu, ou bien le resultat de la requete cela a fonctionné.
+
 ## Worms API
 
 
@@ -81,3 +87,6 @@ http://localhost:8080/api/users/authorize
 Headers :
     token
 ```
+
+## Orders API
+Pour effectuer des commandes, voir son histoire .... [WIP]

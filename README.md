@@ -3,7 +3,7 @@
 Projet réalisé dans le cadre du module CAI ( conception Application intéractives ) à l'ENIB.
 Ceci est un site qui utilise vertX en back-end, angularJS en front-end, qui permet d'acheter/commander des worms, tout en les équipants de bonus ou d'armes particulières.
 
-#Technologies Utilisées
+##Technologies Utilisées
 - Front-end : AngularJS, Twitter bootstrap
 - Back-end : VertX avec Groovy, MongoDb
 
