@@ -1,6 +1,7 @@
 @import url('bootstrap.min.css');
 body{
 background: url('/image/4.jpg');
+background-attachment:fixed;
 }
 
 .jumbotron{
@@ -45,8 +46,11 @@ UL.progress LI.selected:after {
     background-color: blue;
     border-radius: 50%;
 }
-
-
+ .carousel {
+        background-color: white;
+        position: relative;
+        padding: 10px;     /* Shows as a border around the carousel */
+    }
 /* the black and red lines at the back*/
 UL.progress LI.blackbar,
 UL.progress LI.progressline {
@@ -75,6 +79,9 @@ UL.progress LI.progressline {
     background-color: red;
     width: 0;
 }
+
+
+
 [class*="small"] {
  background-color: white;
  margin-bottom: 10px;
@@ -92,7 +99,7 @@ UL.progress LI.progressline {
  background-color: white;
  margin-bottom: 10px;
  border-radius: 5px 0px 0px 5px;
-height: 500px;
+height: 700px;
  width:30%;
  float:left;
 
@@ -101,7 +108,7 @@ height: 500px;
  background-color: white;
  margin-bottom: 10px;
  border-radius: 0px 5px 5px 0px;
-height: 500px;
+height: 700px;
  width:70%;
  text-align: left;
   float:right;
@@ -118,8 +125,9 @@ h2{
     font-size: 52px;
     font-family: "trebuchet ms", sans-serif;    
 }
+
 .item{
-    background: #333;    
+    background:  url('/image/wurms.jpg');    
     text-align: center;
 	border-radius: 5px 5px 5px 5px;
     height: 300px !important;
