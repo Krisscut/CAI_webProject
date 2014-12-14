@@ -7,7 +7,10 @@ import org.vertx.java.core.json.JsonObject
  */
 public interface Users
 {
-   public void createAccount ();
+   public JsonObject createAccount (String username, String password, String email);
+   public JsonObject login (String username, String password);
+   public JsonObject logout(String token);
+   public JsonObject authorize (String token);
    public JsonObject authentificateUser ();
 
 }

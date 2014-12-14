@@ -73,7 +73,7 @@ class WebMainVerticle extends Verticle
             }
         }
 
-        rm.get("/api/users/:cmd") { req ->
+        rm.all("/api/users/:cmd") { req ->
             String cmd = req.params.get("cmd")
 
             JsonObject object = new JsonObject()
@@ -101,6 +101,19 @@ class WebMainVerticle extends Verticle
 
             // send the message throw the eventbus
             eb.send("orders.service", cmd) { response ->
+                // get the response from the eventbus and send it as response
+                println("I received a reply before the timeout of 5 seconds");
+
+                req.response.putHeader("Content-Type", "application/json")
+                req.response.end(response.body, "UNICODE")
+            }
+        }
+
+        rm.get("/api/tokens/:cmd") { req ->
+            String cmd = req.params.get("cmd")
+
+            // send the message throw the eventbus
+            eb.send("tokens.service", cmd) { response ->
                 // get the response from the eventbus and send it as response
                 println("I received a reply before the timeout of 5 seconds");
 

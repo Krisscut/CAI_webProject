@@ -15,7 +15,17 @@
         "logFilePath" : "embedded-mongo.log",
         "version" : "DEVELOPMENT",
         "storageLocation" : "./"
-    }
-    
+    },
 
+    "mailer" :
+    {
+        "address": "mailer.my_mailer",
+        "host": "smtp.googlemail.com",
+        "port": 465,
+        "ssl": true,
+        "auth": true,
+        "username": "wormbuyer",
+        "password": "CAIproject#",
+        "content_type": "text/html"
+    }
 }

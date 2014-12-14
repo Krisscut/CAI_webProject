@@ -55,6 +55,7 @@ dependencies {
   provided "org.codehaus.groovy:groovy-all:$groovyVersion"
   provided "io.vertx:lang-groovy:$groovyLangModVersion@jar"
 
+  compile "io.vertx:mod-mailer:2.0.0-final"
   compile 'org.mongodb:mongo-java-driver:2.12.4'
   compile 'com.google.inject:guice:3.0'
   compile 'com.gmongo:gmongo:1.3'

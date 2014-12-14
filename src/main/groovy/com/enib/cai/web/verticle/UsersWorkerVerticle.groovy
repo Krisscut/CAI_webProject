@@ -45,10 +45,24 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
                 switch (cmd)
                 {
                     case "createAccount":
-                        if (headers.containsKey("username") && headers.containsKey("password") )
+                        if (headers.containsKey("username") && headers.containsKey("password") && headers.containsKey("email"))
                         {
-                            response.putString("status", "ok")
-                            response.putString("result", "now we can work")
+                            JsonObject resultCreation = users.createAccount(headers["username"],headers["password"],headers["email"])
+                            response = resultCreation
+                            if (resultCreation.getString("status") == "ok")
+                            {
+                                //Send the welcome message
+                                //https://github.com/vert-x/mod-mailer
+                                JsonObject dataMail = new JsonObject()
+                                dataMail.putString("from", "wormBuyer@gmail.com")
+                                dataMail.putString("to", "simon.teneau@gmail.com")
+                                dataMail.putString("subject", "Test envoie de mail")
+                                dataMail.putString("body", "Hey !")
+
+                                eb.send("mailer.my_mailer", dataMail) { answer ->
+                                    println("I received a reply before the timeout of 5 seconds")
+                                }
+                            }
                         }
                         else
                         {
@@ -57,16 +71,40 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
                         }
                         break;
                     case "login":
-                        response.putString("status", "ok")
-                        response.putString("result", "login")
-                        break
+                        if (headers.containsKey("username") && headers.containsKey("password"))
+                        {
+                            response = users.login(headers["username"],headers["password"])
+                        }
+                        else
+                        {
+                            response.putString("status", "error")
+                            response.putString("result", "Not all parameters have been given")
+                        }
+                        break;
 
                     case "logout":
-                        response.putString("status", "ok")
-                        response.putString("result", "logout")
-                        break
+                        if (headers.containsKey("token"))
+                        {
+                            response = users.logout(headers["token"])
+                        }
+                        else
+                        {
+                            response.putString("status", "error")
+                            response.putString("result", "Not all parameters have been given")
+                        }
+                        break;
 
                     case "authorize":
+                        if (headers.containsKey("token"))
+                        {
+                            response = users.authorize(headers["token"])
+                        }
+                        else
+                        {
+                            response.putString("status", "error")
+                            response.putString("result", "Not all parameters have been given")
+                        }
+                        break;
                         response.putString("status", "ok")
                         response.putString("result", "authorize")
                         break

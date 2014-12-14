@@ -7,6 +7,7 @@ import com.enib.cai.web.services.Bonuses
 import com.enib.cai.web.services.Equipments
 import com.enib.cai.web.services.Files
 import com.enib.cai.web.services.Orders
+import com.enib.cai.web.services.Tokens
 import com.enib.cai.web.services.Users
 import com.enib.cai.web.services.Worms;
 import com.enib.cai.web.services.impl.FIlesImpl
@@ -15,6 +16,7 @@ import com.enib.cai.web.services.impl.MongoBeersImpl
 import com.enib.cai.web.services.impl.MongoBonusesImpl
 import com.enib.cai.web.services.impl.MongoEquipmentsImpl
 import com.enib.cai.web.services.impl.MongoOrdersImpl
+import com.enib.cai.web.services.impl.MongoTokensImpl
 import com.enib.cai.web.services.impl.MongoUsersImpl
 import com.enib.cai.web.services.impl.MongoWormsImpl;
 import com.google.inject.AbstractModule;
@@ -53,6 +55,7 @@ public class GuiceModule extends AbstractModule {
     bind(Equipments.class).to(MongoEquipmentsImpl.class).in(Singleton.class);
     bind(Articles.class).to(MongoArticlesImpl.class).in(Singleton.class);
     bind(Users.class).to(MongoUsersImpl.class).in(Singleton.class);
-    bind(Orders.class).to(MongoOrdersImpl.class).in(Singleton.class)
+    bind(Orders.class).to(MongoOrdersImpl.class).in(Singleton.class);
+    bind(Tokens.class).to(MongoTokensImpl.class).in(Singleton.class);
   }
 }
