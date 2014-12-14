@@ -2,6 +2,7 @@ package com.enib.cai.web.verticle
 
 import com.enib.cai.web.services.Equipments
 import org.vertx.groovy.core.eventbus.EventBus
+import org.vertx.java.core.json.JsonObject
 
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ class EquipmentWorkerVerticle extends AbstractGuiceVerticle
         EventBus eb = vertx.eventBus
 
         eb.registerHandler("equipments.service") { message ->
-            String response = ""
+            JsonObject response = new JsonObject()
 
             /* Split given URL to take parameters*/
             String[] cmd = message.body.split(";");
@@ -35,30 +36,35 @@ class EquipmentWorkerVerticle extends AbstractGuiceVerticle
                 switch (cmd[0])
                 {
                     case "getAll":
-                        response = equipments.getEquipments().encodePrettily()
+                        response.putString("status", "ok")
+                        response.putArray("result", equipments.getEquipments())
                         break
 
                     case "get":
                         if (cmd.length == 2)
                         {
-                            response = equipments.getEquipment(cmd[1]).encodePrettily()
+                            response.putString("status", "ok")
+                            response.putObject("result", equipments.getEquipment(cmd[1]))
                         }
                         else
                         {
-                            response = usage
+                            response.putString("status", "Bad parameters sent")
+                            response.putString("result", usage)
                         }
                         break
                 //other worms
                     default:
-                        response = "NO CASE";
+                        response.putString("status", "Unknow Command")
+                        response.putString("result", usage)
                 }
             } catch (Exception exp) {
-                response = "Huston we have a problem"
+                response.putString("status", "error")
+                response.putString("result", "Catch exception !")
                 exp.printStackTrace();
             }
 
             // Now reply to it
-            message.reply(response)
+            message.reply(response.encodePrettily())
         }
     }
 }

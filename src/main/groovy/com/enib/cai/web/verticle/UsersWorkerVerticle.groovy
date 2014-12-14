@@ -82,7 +82,6 @@ class UsersWorkerVerticle extends AbstractGuiceVerticle
                 response.putString("result", "Unknow Command")
             }
 
-
             /*
             try {
                 switch (message.body)

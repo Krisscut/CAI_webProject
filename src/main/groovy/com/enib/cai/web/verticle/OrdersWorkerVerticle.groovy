@@ -2,6 +2,7 @@ package com.enib.cai.web.verticle
 
 import com.enib.cai.web.services.Orders
 import org.vertx.groovy.core.eventbus.EventBus
+import org.vertx.java.core.json.JsonObject
 
 import javax.inject.Inject
 
@@ -25,11 +26,13 @@ class OrdersWorkerVerticle extends AbstractGuiceVerticle
         EventBus eb = vertx.eventBus
 
         eb.registerHandler("orders.service") { message ->
-            String response = ""
+            JsonObject response = new JsonObject()
 
             /* Split given URL to take parameters*/
             println "Message reçu : " + message.body
 
+            response.putString("status", "error")
+            response.putString("result", "default Answer")
             /*
             try {
                 switch (message.body)
@@ -58,7 +61,7 @@ class OrdersWorkerVerticle extends AbstractGuiceVerticle
             }
             */
             // Now reply to it
-            message.reply("Default answer")
+            message.reply(response.encodePrettily())
         }
     }
 }
