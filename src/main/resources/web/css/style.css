@@ -1,0 +1,182 @@
+@import url('bootstrap.min.css');
+body{
+background: url('/image/4.jpg');
+}
+
+.jumbotron{
+background: url('/image/6.jpg');
+}
+
+UL.progress {
+    list-style: none;
+    padding: 0;
+    position: relative;
+	height:30px;
+	background:none;
+	padding:5px;
+}	
+
+/* the black dots */
+UL.progress LI {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: silver;
+    border-radius: 50%;
+    margin-left: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* first black dot has no gap to the left */
+UL.progress LI:first-child {
+    margin-left: 0;
+}
+
+/* red dot when selected */
+UL.progress LI.selected:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+
+/* the black and red lines at the back*/
+UL.progress LI.blackbar,
+UL.progress LI.progressline {
+    z-index: -2;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 28px;
+    left: 30px;    /* 60 (diameter) / 2 */
+    width: 450px;  /* 5*60 + 5*30 (dot diameter and gap) */
+    height: 4px;
+    background-color: black;
+    margin-left: 0;
+    border-radius: 0;
+}
+
+/* the black line */
+UL.progress LI.blackbar {
+    z-index: -2;
+    background-color: black;
+}
+
+/* the red progress line */
+UL.progress LI.progressline {
+    z-index: -1;
+    background-color: red;
+    width: 0;
+}
+[class*="small"] {
+ background-color: white;
+ margin-bottom: 10px;
+ border-radius: 5px 5px 5px 5px;
+
+}
+[class*="middle"] {
+ background-color: white;
+ margin-bottom: 10px;
+ border-radius: 5px 5px 5px 5px;
+ line-height: 40px;
+ text-align: center;
+}
+[class*="left-box"] {
+ background-color: white;
+ margin-bottom: 10px;
+ border-radius: 5px 0px 0px 5px;
+height: 500px;
+ width:30%;
+ float:left;
+
+}
+[class*="right-box"] {
+ background-color: white;
+ margin-bottom: 10px;
+ border-radius: 0px 5px 5px 0px;
+height: 500px;
+ width:70%;
+ text-align: left;
+  float:right;
+   padding:10px;
+}
+[class*="col-xs-4"] {
+width:31.6%;
+margin-left: 15px;
+}
+h2{
+    margin: 0;     
+    color: #666;
+    padding-top: 90px;
+    font-size: 52px;
+    font-family: "trebuchet ms", sans-serif;    
+}
+.item{
+    background: #333;    
+    text-align: center;
+	border-radius: 5px 5px 5px 5px;
+    height: 300px !important;
+	
+}
+.carousel{
+    margin-top: 20px;
+	width:100%;
+	float:left;
+	margin-bottom:10px;
+}
+
+.first{
+margin-bottom:300px;
+
+}
+.bs-example{
+
+}
+[class*="btn_select"] {
+margin:20px
+}
+#fade { /*--Masque opaque noir de fond--*/
+	display: none; /*--masqué par défaut--*/
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .80;
+	z-index: 9999;
+}
+.popup_block{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	padding: 20px;
+	border: 20px solid #ddd;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+img.btn_close {
+	float: right;
+	margin: -55px -55px 0 0;
+}
+/*--Gérer la position fixed pour IE6--*/
+*html #fade {
+position: absolute;
+}
+*html .popup_block {
+position: absolute;
+}

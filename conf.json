@@ -1,5 +1,31 @@
-// Example JSON config file
-
 {
-  "foo": "bar"
+    "foo": "bar",
+
+    "mongo" :
+    {
+        "useAuth" : true,
+        "host": "localhost",
+        "port":27017,
+        "username" : "default",
+        "password" : "default",
+        "dbname": "CAI_webProject",
+        "staticImgs": "./src/main/resources/web/beers/img",
+
+        "logging" :  "console",
+        "logFilePath" : "embedded-mongo.log",
+        "version" : "DEVELOPMENT",
+        "storageLocation" : "./"
+    },
+
+    "mailer" :
+    {
+        "address": "mailer.my_mailer",
+        "host": "smtp.googlemail.com",
+        "port": 465,
+        "ssl": true,
+        "auth": true,
+        "username": "wormbuyer",
+        "password": "CAIproject#",
+        "content_type": "text/html"
+    }
 }

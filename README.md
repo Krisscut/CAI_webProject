@@ -1,12 +1,34 @@
-# Vert.x Gradle Template
+# CAIwebProject
 
-Template project for creating a Vert.x module with a Gradle build.
+Projet réalisé dans le cadre du module CAI ( conception Application intéractives ) à l'ENIB.
+Ceci est un site qui utilise vertX en back-end, angularJS en front-end, qui permet d'acheter/commander des worms, tout en les équipants de bonus ou d'armes particulières.
 
-Clone this and adapt it to easily develop Vert.x modules using Gradle as your build tool.
+##Technologies Utilisées
+- Front-end : AngularJS, Twitter bootstrap
+- Back-end : VertX avec Groovy, MongoDb
 
-By default this module contains a simple Java verticle which listens on the event bus and responds to `ping!`
-messages with `pong!`.
+Pour lancer le module, faire un
+```bash
+gradlew build
+```
 
-This template also shows you how to write tests in Java, Groovy, Ruby and Python
+puis un
+```bash
+gradlew runMod
+```
 
-See the [build script](build.gradle) for the list of useful tasks
+Attention, il faut qu'une instance de mongoDb soit lancée ( avec les paramètres par defaut ).
+Si besoin le fichier conf.json permet de modifier les paramètres de mongo.
+
+Le site sera alors disponible ( par defaut ) ici : 
+```bash
+http://localhost:8080/worms.html
+```
+
+Pour transmettre les données depuis le back-end vers le front-end, une API restfull est disponible sur l'adresse
+```html
+http://localhost:8080/api
+```
+
+plus d'infos ici:
+https://github.com/Krisscut/CAI_webProject/tree/DEV/src/main/groovy/com/enib/cai/web

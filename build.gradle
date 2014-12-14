@@ -55,7 +55,12 @@ dependencies {
   provided "org.codehaus.groovy:groovy-all:$groovyVersion"
   provided "io.vertx:lang-groovy:$groovyLangModVersion@jar"
 
+  compile "io.vertx:mod-mailer:2.0.0-final"
+  compile 'org.mongodb:mongo-java-driver:2.12.4'
+  compile 'com.google.inject:guice:3.0'
+  compile 'com.gmongo:gmongo:1.3'
 }
+
 
 test {
   /* Configure which tests are included
@@ -65,14 +70,26 @@ test {
 
 }
 
+/* -----Embedded Mongo part --- --*/
+buildscript {
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath 'com.sourcemuse.gradle.plugin:gradle-mongo-plugin:0.4.0'
+   }
+}
+apply plugin: 'mongo'
+/* ------------------------------ */
+
 /*
 If you're uploading stuff to Maven, Gradle needs to generate a POM.
 Please edit the details below.
  */
 def configurePom(def pom) {
   pom.project {
-    name CAI_webCommercial
-    description 'Website created for CAI's module'
+    name rootProject.name
+    description 'Website created for CAI module'
     inceptionYear '2014'
     packaging 'jar'
 
@@ -84,6 +101,12 @@ def configurePom(def pom) {
         name 'Krisscut'
         email 'krisscut@hotmail.fr'
       }
+
+        developer {
+            id 'LastCall'
+            name 'Lastcall310'
+            email 'unknow@tofill.fr'
+        }
     }
 
     scm {
@@ -101,5 +124,9 @@ def configurePom(def pom) {
     properties {
       setProperty('project.build.sourceEncoding', 'UTF8')
     }
+
+
   }
 }
+
+
