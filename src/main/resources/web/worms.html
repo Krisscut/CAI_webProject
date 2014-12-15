@@ -16,6 +16,9 @@
     <script src="lib/angular.js"></script>
     <script src="lib/angular-route.js"></script>
     <script src="lib/angular-resource.js"></script>
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
     <!-- required module to enable animation support in AngularJS -->
     <script src="lib/angular-animate.js"></script>
     <script src="js/app.js"></script>
@@ -49,7 +52,9 @@
 		<div style= "float:right" class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#" target="_blank">Home</a></li>
-				<li class="active"><a href="#?w=1000?" rel="connexion" class="poplight">Se connecter</a></li>
+				<li><a href="#?w=750?" rel="connexion" class="poplight">Se connecter</a></li>
+				<li><a href="#?w=850?" rel="contact" class="poplight">Contact</a></li> 
+
 				
 			</ul>
 		</div>
@@ -66,16 +71,16 @@
        <!-- Carousel items -->
         <div class="carousel-inner">
             <div class="active item ">
-                <h2>Ouverture du 1er site d'achat de worm</h2>
+                <h1 >Ouverture du 1er site d'achat de worm</h1>
                 <div class="carousel-caption">
-                  <h3>Soyez le premier à acheter votre worm !</h3>
+                  <h2>Soyez le premier à acheter votre worm !</h2>
                 
                 </div>
             </div>
             <div class="item">
-                <h2>Noël arrive à grand pas de vers !</h2>
+                <h1>Noël arrive à grand pas de vers !</h1>
                 <div class="carousel-caption">
-                  <h3>Offrer un worm au Père Noël !</h3>
+                  <h2>Offrer un worm au Père Noël !</h2>
                  
                 </div>
             </div>
@@ -136,7 +141,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-	<p style="text-align:center"><a href="#?w=1000?" rel="personnages" class="poplight btn btn-success">Voir les worms</a></p>
+	<!--	<p style="text-align:center"><a href="#?w=1000?" rel="personnages" class="poplight btn btn-success">Voir les worms</a></p> -->
 </div>
 		</div>
 		<div class="col-xs-4 small">
@@ -177,7 +182,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-	<p style="text-align:center"><a href="#?w=1000?" rel="armes" class="poplight btn btn-success">Voir les armes</a></p>
+		<!--<p style="text-align:center"><a href="#?w=1000?" rel="armes" class="poplight btn btn-success">Voir les armes</a></p> -->
 </div>
 		</div>
 		<div class="col-xs-4 small">
@@ -218,8 +223,9 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-	<p style="text-align:center"><a href="#?w=1000?" rel="bonus" class="poplight btn btn-success" >Voir les bonus</a></p>
+		<!--<p style="text-align:center"><a href="#?w=1000?" rel="bonus" class="poplight btn btn-success" >Voir les bonus</a></p> -->
 </div>
+
 		</div>
 	</div>
 
@@ -227,15 +233,15 @@
 <div  ng-controller="wormtruc">
 
     <div class="left-box">
-		<button class="btn btn_select" type="submit" ng-click="getWormData()">Selection du personnage</button><br>
-		<button class="btn btn_select" type="submit" ng-click="getEquipmentData()">Selection de l'arme</button><br>
-		<button class="btn btn_select" type="submit" ng-click="getBonusData()">Selection du bonus</button><br>
-		<button class="btn btn_select" type="submit" ng-click="addTo()">Voir le panier</button><br>
+		<p style="padding-top:40px ;padding-left:8px;padding-bottom:8px"><button class="myButton" type="submit" ng-click="getWormData()">Selection du personnage</button></p><br>
+		<p style="padding:8px"><button class="myButton" type="submit" ng-click="getEquipmentData()">Selection de l'arme</button></p><br>
+		<p style="padding:8px"><button class="myButton" type="submit" ng-click="getBonusData()">Selection du bonus</button></p><br>
+		<p style="padding:8px"><button class="myButton" type="submit" ng-click="addTo()">Voir le panier</button></p><br>
 	</div>
 	
     <div class="right-box ">	
 		<div ng-repeat="worm in worms" style="border:1px">
-			<img ng-src="{{worm.img}}"><br>
+			<p style="text-align:center"><img ng-src="{{worm.img}}"><p><br>
 			Name: {{worm.name}} <br>
 			Description:{{worm.description}}<br>
 			Produits restants : {{worm.availability}}<br>
@@ -245,7 +251,7 @@
 			<HR width="500" align="center">
 		</div>
 		<div ng-repeat="equipment in equipments">
-			<img ng-src="{{equipment.img}}"><br>
+			<p style="text-align:center"><img ng-src="{{equipment.img}}"><p><br>
 			Name: {{equipment.name}} <br>
 			Description:{{equipment.description}}<br>
 			Produits restants : {{equipment.availability}}<br>
@@ -255,7 +261,7 @@
 			<HR width="500" align="center">
 		</div>
 			<div ng-repeat="bonus in bonuses">
-			<img ng-src="{{bonus.img}}"><br>
+			<p style="text-align:center"><img ng-src="{{bonus.img}}"></p><br>
 			Name: {{bonus.name}} <br>
 			Description:{{bonus.description}}<br>
 			Produits restants : {{bonus.availability}}<br>
@@ -274,12 +280,25 @@
 </div>
 
 </div>
-<div id="connexion" class="popup_block">
-	<h2>Personnages</h2>
+<div id="connexion" class="popup_block pop_conex">
+	<h3 style="text-align:center"> Connexion </h3><br>
+	<form method="post" id="connexion" action="/messages">
+    <p><label for="email">Pseudo </label><p style="text-aligne:right"><input type="text" size="30" name="username" id="username" /></p></p>
+    <p><label for="password">Mot de passe </label><p style="text-aligne:right"><input type="password" size="30" name="password" id="password" /></p></p>
+    <p><input type="submit" value="se connecter" name="commit" id="message_submit"/><br> <br> si vous n'avez pas encore de compte <a href="#?w=750?" rel="inscription" class="poplight">inscrivez-vous</a> dès maintenant!</p>
+  </form>
 	</div>
-
-<div id="personnages" class="popup_block">
-	<h2>Personnages</h2>
+<div id="inscription" class="popup_block pop_ins">
+	<h3 style="text-align:center"> Inscription </h3><br>
+	<p><label for="email">Pseudo </label><p style="text-aligne:right"><input type="text" size="30" name="username" id="username" /></p></p>
+    <p><label for="password">Mot de passe </label><p style="text-aligne:right"><input type="password" size="30" name="password" id="password" /></p></p>
+	<p><label for="email">Votre adresse mail</label><p style="text-aligne:right"><input type="text" size="30" name="email" id="email" /></p></p><br>
+	<p><a class="poplight btn btn-success">Valider</a></p>
+</div>
+<div id="contact" class="popup_block pop_cont">
+	<h3 style="text-align:center">Les merveilleux créateurs de ce magnifique site splendide</h3><br><br>
+	<p> Wu Xiao Hang(x9wu@enib.fr) aka The Best Developper In the Est-West-South-North-Middle</p><br>
+	<p> Teneau Simon(s0teneau@enib.fr) aka The Best Developper n°2 In the Est-West-South-North-Middle </p>
 	</div>
 <div id="armes" class="popup_block">
 	<h2>Armes</h2>
@@ -288,9 +307,12 @@
 	<h2>Bonus</h2>
 	</div>
 	<div>
+	
+
 </div>
 </body>
 <script>
+$(document).ready(function() {
 $('a.poplight[href^=#]').click(function() {
 	var popID = $(this).attr('rel'); //Trouver la pop-up correspondante
 	var popURL = $(this).attr('href'); //Retrouver la largeur dans le href
@@ -325,12 +347,19 @@ $('a.poplight[href^=#]').click(function() {
 });
 
 //Fermeture de la pop-up et du fond
-$('a.close, #fade').on('click', function() { //Au clic sur le bouton ou sur le calque...
-	$('#fade , .popup_block').fadeOut(function() {
-		$('#fade, a.close').remove();  //...ils disparaissent ensemble
-	});
+	
+	//Close Popups and Fade Layer
+	$('body').on('click', 'a.close, #fade', function() { //Au clic sur le body...
+		$('#fade , .popup_block').fadeOut(function() {
+			$('#fade, a.close').remove();  
+	}); //...ils disparaissent ensemble
 	return false;
 });
+
+});
+
+
+
 </script>
 
 </html>                                		
