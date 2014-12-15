@@ -64,32 +64,32 @@ public class MongoProvider implements Provider<DB> {
 
     println "Preparing abilities"
       //Force vitality speed resistance mind
-    Ability forceAbility =              new Ability ('0', 10, 0, 0, 0, 0)
-    Ability weakAbility =               new Ability ('1', -10, 0, 0, 0, 0)
+    Ability forceAbility =              new Ability ('0', 10, 10, 10, 10, 10)
+    Ability weakAbility =               new Ability ('1', 1, 1, 1, 1, 1)
     Ability heavyAbility =              new Ability ('2', 0, 10, 0, 0, 0)
-    Ability tinyAbility =               new Ability ('3', 0, -10, 0, 0, 0)
-    Ability quickAbility =              new Ability ('4', 0, 0, 10, 0, 0)
-    Ability slowAbility =               new Ability ('5', 0, 0, -10, 0, 0)
+    Ability tinyAbility =               new Ability ('3', 7, 0, 0, 0, 0)
+    Ability quickAbility =              new Ability ('4', 0, 0, 5, 0, 0)
+    Ability slowAbility =               new Ability ('5', 5, 0, 0, 0, 0)
     Ability resistanceAbility =         new Ability ('6', 0, 0, 0, 10, 0)
     Ability unResistanceAbility =       new Ability ('7', 0, 0, 0, -10, 0)
-    Ability smartAbility =              new Ability ('8', 0, 0, 0, 0, 10)
+    Ability smartAbility =              new Ability ('8', 0, 0, 0, 0, 7)
     Ability unSmartAbility =            new Ability ('9', 0, 0, 0, 0, -10)
 
     println "Inserting worms"
-    Worm wormStrong = new Worm('0',"Worm Fort", "L'un des worm les plus imposants que vous pourrez trouver sur le jeu", "img/wormFort.jpg", 100, 1000, forceAbility)
+    Worm wormStrong = new Worm('0',"Worm Noël", "Le worm de Noël is in da place", "img/wormFort.jpg", 100, 1000, forceAbility)
     db.getCollection("worms").save(wormStrong.getDBObject());
-    Worm wormWeak = new Worm('1',"Worm Faible", "L'un des worm les plus faibles que vous pourrez trouver sur le jeu", "img/wormWeak.jpg", 100, 1000, weakAbility)
+    Worm wormWeak = new Worm('1',"Worm basique", "Le worm de base dont tout le monde rêve", "img/wormWeak.jpg", 100, 10, weakAbility)
     db.getCollection("worms").save(wormWeak.getDBObject());
 
-    Bonus   speedBonus = new Bonus('0', "Bonus rapidité", "Founis un bonus de rapidité pour votre worm !", "img/bonusQuick.jpg", 100, 100, quickAbility)
+    Bonus   speedBonus = new Bonus('0', "BeepBeep", "Fais appel à BeepBeep pour aller plus vite !", "img/bonusQuick.jpg", 100, 100, quickAbility)
     db.getCollection("bonus").save(speedBonus.getDBObject());
     DBObject object = speedBonus.getDBObject()
-    Bonus   slowBonus = new Bonus('1', "Slow Malus", "Founis un malus de rapidité pour votre worm !", "img/bonusSlow.jpg", 100, 100, slowAbility)
+    Bonus   slowBonus = new Bonus('1', "Sangoku", "Sangoku est avec toi !", "img/bonusSlow.jpg", 100, 100, slowAbility)
     db.getCollection("bonus").save(slowBonus.getDBObject());
 
-    Equipment   sword = new Equipment('0', "Epée", "Une épée tout ce qu'il y a de plus classique", "img/sword.png", 10, 1000, heavyAbility)
+    Equipment   sword = new Equipment('0', "Carapace verte", "Lances les carapaces vertes sur les méchants", "img/sword.png", 10, 1000, heavyAbility)
     db.getCollection("equipments").save(sword.getDBObject());
-    Equipment   grenade = new Equipment('1', "Grenade", "Une grenade augmentant considérablement votre puissance de feu", "img/grenade.png", 10, 1000, smartAbility)
+    Equipment   grenade = new Equipment('1', "Pokéball", "Lances les pokéballs , sur un malentendu on ne sait jamais", "img/grenade.png", 10, 1000, smartAbility)
     db.getCollection("equipments").save(grenade.getDBObject());
     /*
     if (path != null) {
